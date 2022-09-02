@@ -1,0 +1,2815 @@
+openapi: 3.0.3
+info:
+  title: Swagger PRO GUAP
+  version: 0.0.1
+  description: |-
+      PRO GUAP API Documentation
+servers:
+  - url: https://localhost:8080/api/v1
+
+
+paths:
+
+  /userUpdateProfile/{user_id}:
+    put:
+      tags:
+        - Profile
+      summary: edit Profile
+      description: Edit user profile
+      operationId: editUserProfile
+      parameters:
+        - name: user_id
+          in: path
+          description: user id
+          required: true
+          schema:
+            type: integer
+            format: int64
+          example: 23412
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 23412
+                username:
+                  type: string
+                  example: st49970
+                lastname:
+                  type: string
+                  example: Екименко
+                firstname:
+                  type: string
+                  example: Евгений
+                middlename:
+                  type: string
+                  example: Андреевич
+                email:
+                  type: string
+                  example: xxx-zenek-xxx@mail.ru
+                phone:
+                  type: string
+                  example: 89998887766
+                auditorium:
+                  type: string
+                  example: 52-12
+                image: 
+                  type: string
+                  example: https://pro.guap.ru/files/img/person31.jpg
+                academic_title: 
+                  type: integer
+                  format: int64
+                  example:
+                    - 1
+                    - 2
+                    - 3
+                degrees:
+                  type: integer
+                  format: int64
+                  example:
+                    - 1
+                    - 2
+                    - 3
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EditProfileAPIResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EditProfileAPIResponse'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Student profile not found
+
+  /get-achievements:
+    get:
+      tags:
+        - Achievement
+      summary: Get Achievements 
+      description: Get Achievements 
+      operationId: getAchievements
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/achievements'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/achievements'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Achievement not found
+
+
+
+  /getQuestionnaire:
+    get:
+      tags:
+        - Question
+      summary: Get Question 
+      description: Get Question 
+      operationId: getQuestion
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Question'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Question'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Question not found
+
+
+  /getstudentprofile/{profile_id}:
+    get:
+      tags:
+        - Profile
+      summary: Get user profile
+      description: Get user profile
+      operationId: getUserProfile
+      parameters:
+        - name: profile_id
+          in: path
+          description: Profile id
+          required: true
+          schema:
+            type: string
+          example: 23412
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Profile'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Profile not found
+          
+          
+  /getUser/{user_id}:
+    get:
+      tags:
+        - User
+      summary: Get user 
+      description: Get user 
+      operationId: getUserById
+      parameters:
+        - name: user_id
+          in: path
+          description: User id
+          required: true
+          schema:
+            type: string
+          example: 23412
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: User not found
+          
+          
+          
+  /getReferenceDictionaries:
+    get:
+      tags:
+        - Dictionary
+      summary: Get dictionary 
+      description: Get dictionary 
+      operationId: getDictionary
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dictionarie'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Dictionarie'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: User not found
+          
+          
+  /get-student-marks/{student_id}:
+    get:
+      tags:
+        - Mark
+      summary: Get student marks
+      description: student marks
+      operationId: getUserMarks
+      parameters:
+        - name: student_id
+          in: path
+          description: Student id
+          required: true
+          schema:
+            type: string
+          example: 49970
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentMarks'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/StudentMarks'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Student marks not found
+          
+  /get-student-profile:
+    get:
+      tags:
+        - Profile
+      summary: Get student profile
+      description: student profile
+      operationId: getStudentProfile
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentProfile'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/StudentProfile'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Student marks not found
+  
+  /SubjectItemStudent:
+    post:
+      tags:
+        - Subjects
+      summary: Get all subjects
+      description: student subjects information
+      operationId: getsubjectsInfo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 20
+                eid:
+                  type: integer
+                  format: int64
+                  example: 23412
+              required:
+                - id
+                - eid
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubjectItemStudent'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SubjectItemStudent'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Student subjects not found
+          
+  /achievements/{achievement_id}:
+    delete:
+      tags:
+        - Achievement
+      summary: delete Achievement by id
+      description: delete achievement by id
+      operationId: deleteAchievementById
+      parameters:
+        - name: achievement_id
+          in: path
+          description: Achievement id
+          required: true
+          schema:
+            type: integer
+            format: int64
+          example: 4629
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deleteAchievement'      
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Student Achievement not found       
+          
+          
+          
+          
+  /get-user-publications/{publication_id}:
+    post:
+      tags:
+        - Publication
+      summary: Get publication by id
+      description: publications in the various magazines
+      operationId: getPublicationInfo
+      parameters:
+        - name: publication_id
+          in: path
+          description: publication id
+          required: true
+          schema:
+            type: integer
+            format: int64
+          example: 23412
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                all:
+                  type: integer
+                  format: int64
+                  example: 1
+                startYear:
+                  type: integer
+                  format: int64
+                  example: 1927
+                endYear:
+                  type: integer
+                  format: int64
+                  example: 2027
+                textSearch:
+                  type: string
+                  example: 'some text'
+              required:
+                - all
+                - startYear
+                - endYear
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/filterData'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/filterData'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Student publication not found    
+          
+          
+          
+      
+          
+          
+  /achievement/{achievement_id}:
+    post:
+      tags:
+        - Achievement
+      summary: edit Achievement
+      description: edit exist achievement
+      operationId: editAchievement
+      parameters:
+        - name: achievement_id
+          in: path
+          description: Achievement id
+          required: true
+          schema:
+            type: integer
+            format: int64
+          example: 4629
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 20
+                user_id:
+                  type: integer
+                  format: int64
+                  example: 23412
+                text:
+                  type: string
+                  example: "Победитель compTech 2022"
+                file:
+                  type: boolean
+                  example: false
+                filename:
+                  type: boolean
+                  example: false
+                category:
+                  type: integer
+                  format: int64
+                  example: 3
+              required:
+                - id
+                - user_id
+                - text
+                - file
+                - filename
+                - category
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewAchievement'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/NewAchievement'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: information about the achievement has not been added
+          
+          
+          
+  /achievements:
+    post:
+      tags:
+        - Achievement
+      summary: Add Achievement
+      description: add Achievement
+      operationId: addAchievement
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 20
+                user_id:
+                  type: integer
+                  format: int64
+                  example: 23412
+                text:
+                  type: string
+                  example: "Победитель compTech 2032"
+                file:
+                  type: boolean
+                  example: false
+                filename:
+                  type: boolean
+                  example: false
+                category:
+                  type: integer
+                  format: int64
+                  example: 3
+              required:
+                - id
+                - user_id
+                - text
+                - file
+                - filename
+                - category
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewAchievement'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/NewAchievement'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Student Achievement not found
+          
+          
+          
+          
+  /subjectsDictionaries:
+    post:
+      tags:
+        - Subjects
+      summary: Get all subjects
+      description: Get information about all subjects
+      operationId: getAllSubject
+      requestBody:
+        description: Info
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Info'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Info'
+
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubjectDictionaries'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SubjectDictionaries'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Subject not found
+          
+  /tasks:
+    get:
+      tags:
+        - Task
+      summary: Get all tasks
+      description: Get information about all tasks
+      operationId: getAllTasks
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tasks'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Tasks'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Student tasks not found
+          
+  /tasks/{task_id}:
+    get:
+      tags:
+        - Task
+      summary: Get task by id
+      description: task info
+      operationId: getTastInfo
+      parameters:
+        - name: task_id
+          in: path
+          description: Task id
+          required: true
+          schema:
+            type: string
+          example: 80796
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentTask' 
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/StudentTask'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Student task not found
+          
+  /materials:     
+    post:
+      tags:
+        - Material
+      summary: get all materials
+      description: get info about materials
+      operationId: getMaterials
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                semestr:
+                  type: integer
+                  format: int64
+                  example: 20
+                iduser:
+                  type: integer
+                  format: int64
+                  example: 23412
+              required:
+                - semestr
+                - iduser
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Materials'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Materials'
+        '405':
+          description: Invalid input
+
+components:
+  schemas:
+  
+    Chart:
+      type: object
+      properties:
+        type: 
+          type: string
+          example: 'column'
+        
+    Column:
+      type: object
+      properties:
+        borderWidth:
+          type: number
+          format: double
+          example: 0
+        pointPadding:
+          type: number
+          format: double
+          example: 0.2      
+          
+    PlotOptions:
+      type: object
+      properties:
+        Column:
+          $ref: '#/components/schemas/Column'
+          
+          
+    Serie1:
+      type: object
+      properties:
+        data:
+          type: integer
+          format: int64
+          example:
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+        name:
+          type: string
+          example: 'Все'
+          
+    Serie2:
+      type: object
+      properties:
+        data:
+          type: integer
+          format: int64
+          example:
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+        name:
+          type: string
+          example: 'Scopus'
+          
+          
+    Serie3:
+      type: object
+      properties:
+        data:
+          type: integer
+          format: int64
+          example:
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+        name:
+          type: string
+          example: 'Web of Scince'
+          
+          
+    Serie4:
+      type: object
+      properties:
+        data:
+          type: integer
+          format: int64
+          example:
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+        name:
+          type: string
+          example: 'РИНЦ'
+          
+          
+    Serie5:
+      type: object
+      properties:
+        data:
+          type: integer
+          format: int64
+          example:
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+        name:
+          type: string
+          example: 'ВАК'
+            
+    Serie6:
+      type: object
+      properties:
+        data:
+          type: integer
+          format: int64
+          example:
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+        name:
+          type: string
+          example: 'Прочее'
+    
+    Series:
+      type: array
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/Serie1'
+          - $ref: '#/components/schemas/Serie2'
+          - $ref: '#/components/schemas/Serie3'
+          - $ref: '#/components/schemas/Serie4'
+          - $ref: '#/components/schemas/Serie5'
+          - $ref: '#/components/schemas/Serie6'
+          
+    Title:
+      type: object
+      properties:
+        data:
+          type: string
+          example: 'статистика по публикациям'
+          
+          
+          
+    
+    Tooltip:
+      type: object
+      properties:
+        headerFormat: 
+          type: string
+          example: <span style="font-size:10px">{point.key}</span><table>
+        pointFormat: 
+          type: string
+          example: '<tr><td style="color:{series.color};padding:0">{series.name}: </td><td
+          style="padding:0"><b>{point.y:.1f} ед.</b></td></tr>'
+        footerFormat: 
+          type: string
+          example: "</table>"
+        shared: 
+          type: boolean
+          example: true
+        useHTML:
+          type: boolean
+          example: true
+          
+          
+    xAxis:
+      type: object
+      properties:
+        Categories:
+          type: integer
+          format: int32
+          example:
+            - 2011
+            - 2012
+            - 2013
+            - 2014
+            - 2015
+            - 2016
+            - 2017
+            - 2018
+            - 2019
+            - 2020
+            - 2021
+            - 2022
+        Сrosshair:
+          type: boolean
+          example: true 
+    
+    
+    yAxis:
+      type: object
+      properties:
+        min:
+          type: integer
+          format: int32
+          example: 0
+        title:
+          type: string
+          example: 'Количество (ед)'
+          
+          
+    PublicationGraph1:
+      type: object
+      properties:
+        Chart:
+          $ref: '#/components/schemas/Chart'
+        Plotoptions:
+          $ref: '#/components/schemas/PlotOptions'
+        Series:
+          $ref: '#/components/schemas/Series'
+        Title:
+          $ref: '#/components/schemas/Title'
+        Tooltip:
+          $ref: '#/components/schemas/Tooltip'
+        xAxis:
+          $ref: '#/components/schemas/xAxis'
+        yAxis:
+          $ref: '#/components/schemas/yAxis'
+          
+          
+    Graphinfo:
+      type: object
+      properties:
+        PublicationGraph1:
+          $ref: '#/components/schemas/PublicationGraph1'
+          
+          
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 23412
+        username:
+          type: string
+          example: st49970
+        lastname:
+          type: string
+          example: Екименко
+        firstname:
+          type: string
+          example: Евгений
+        middlename:
+          type: string
+          example: Андреевич
+        email:
+          type: string
+          example: xxx-zenek-xxx@mail.ru
+        regEmail:
+          type: string
+          example: xxx-zenek-xxx@mail.ru
+        phone:
+          type: string
+          example: 89998887766
+        auditorium:
+          type: string
+          example: 52-12
+        vaccination:
+          type: integer
+          format: int64
+          example: 1
+        date_vac:
+          type: string
+          example: 2022-03-22
+        image: 
+          type: string
+          example: https://pro.guap.ru/files/img/person31.jpg
+        showContacts: 
+          type: integer
+          format: int64
+          example: 0
+        degree_id: 
+          type: integer
+          format: int64
+          example: null
+        degree_name:
+          type: string
+          example: null
+        degree_description:
+          type: string
+          example: null
+        at_id:
+          type: integer
+          format: int64
+          example: null
+        at_name:
+          type: string
+          example: null
+        up_contacts:
+          type: string
+          example: 2022-02-18 15:18:29
+        grnum:
+          type: integer
+          format: int64
+          example: 4931
+        eduform_name:
+          type: string
+          example: Бакалавриат
+        edutype_name:
+          type: string
+          example: очная
+        spec_name:
+          type: string
+          example: Программная инженерия
+        impersonated: 
+          type: integer
+          format: int64
+          example: 0
+        canImpersonate:
+          type: integer
+          format: int64
+          example: 0
+        sameChair:
+          type: boolean
+          example: false
+        isGlobalAdmin:
+          type: boolean
+          example: false
+        isChairAdmin:
+          type: boolean
+          example: false
+        isFacultyAdmin:
+          type: boolean
+          example: false
+        showAccountEmail:
+          type: boolean
+          example: true
+        begin_semester:
+          type: string
+          example: 2022-02-18
+        visibleModalVac:
+          type: boolean
+          example: false
+          
+          
+    StudentInfo:
+      type: object
+      properties:
+        STID: 
+          type: integer
+          format: int64
+          example: 74282
+        LastName: 
+          type: string
+          example: Екименко
+        FirstName: 
+          type: string
+          example: Евгений
+        MiddleName: 
+          type: string
+          example: Андреевич
+        Born: 
+          type: string
+          example: 2001-04-14
+        Sex: 
+          type: string
+          example: male
+        eid: 
+          type: integer
+          format: int64
+          example: 49970
+        StudentCardNum: 
+          type: string
+          example: 2019/0347
+        Chair: 
+          type: integer
+          format: int64
+          example: 43
+        contract: 
+          type: integer
+          format: int64
+          example: 1
+        celevik: 
+          type: integer
+          format: int64
+          example: 0
+        gDate: 
+          type: string
+          example: 2023-08-31
+        celName: 
+          type: string
+          example: не указана
+        depId: 
+          type: integer
+          format: int64
+          example: 4
+        depName: 
+          type: string
+          example: Институт вычислительных систем и программирования
+        deanshort: 
+          type: string
+          example: Татарникова Т. М.
+        position: 
+          type: string
+          example: Директор института №4
+        shortSign: 
+          type: integer
+          format: int64
+          example: 4
+        dtype: 
+          type: integer
+          format: int64
+          example: 2
+        dep_secretary: 
+          type: string
+          example: Пашаева И.А.
+        grid: 
+          type: integer
+          format: int64
+          example: 5374
+        IDEP: 
+          type: integer
+          format: int64
+          example: 5504
+        grnum: 
+          type: integer
+          format: int64
+          example: 4931
+        spec_id: 
+          type: integer
+          format: int64
+          example: 359
+        spec_name: 
+          type: string
+          example: Программная инженерия
+        spec_code: 
+          type: string
+          example: 09.03.04
+        eduform_id: 
+          type: integer
+          format: int64
+          example: 1
+        eduform_name: 
+          type: string
+          example: очная
+        edutype_id: 
+          type: integer
+          format: int64
+          example: 2
+        edutype_name: 
+          type: string
+          example: Бакалавриат
+        status: 
+          type: string
+          example: Зачислен
+    Contracts:
+      type: object
+      properties:
+        DGID:
+          type: integer
+          format: int64
+          example: 37343
+        eid:
+          type: integer
+          format: int64
+          example: 49970
+        dog_numb: 
+          type: string
+          example: 734/19
+        dog_type: 
+          type: integer
+          format: int64
+          example: 2
+        dog_date: 
+          type: string
+          example: 2019-08-27
+        dog_status: 
+          type: integer
+          format: int64
+          example: 1
+        dog_from: 
+          type: string
+          example: 2019-09-01
+        dog_to: 
+          type: string
+          example: 2023-06-30
+        first_summa: 
+          type: integer
+          format: int64
+          example: 0
+        summa: 
+          type: integer
+          format: int64
+          example: 2400
+        total_cost: 
+          type: integer
+          format: int64
+          example: 0
+        STID: 
+          type: integer
+          format: int64
+          example: 74282
+        dormitory_id: 
+          type: integer
+          format: int64
+          example: 2
+        hash: 
+          type: string
+          example: 97ab760b5b61dea4a13dea85b4d386002e8485bd
+        dog_type_title: 
+          type: string
+          example: Договор на общежитие
+        dog_status_title: 
+          type: string
+          example: Активный
+        dormitory_name: 
+          type: string
+          example: Общежитие №2 на Передовиков
+    EpLink:
+      type: object
+      properties:
+        name:
+          type: string
+          example: 2023-06-30eduplan5504.pdf
+        origname:
+          type: string
+          example: 2023-06-30РЈРџ_09.03.04_02_43_2019_Рћ.pdf
+        hash:
+          type: string
+          example: 2023-06-30fb0f50fdcbc55cad2b3aff9c4a1764f0
+          
+    CurrentEducation:
+      type: object
+      properties: 
+        STID: 
+          type: integer
+          format: int64
+          example: 74282
+        eid: 
+          type: integer
+          format: int64
+          example: 49970
+        degree: 
+          type: string
+          example: B
+        grnum: 
+          type: integer
+          format: int64
+          example: 4931
+        specialityName: 
+          type: string
+          example: 'Программная инженерия'
+        specialityCode: 
+          type: string
+          example: '09.03.04'
+        degreeTitle: 
+          type: string
+          example: 'Бакалавриат 09.03.04 Программная инженерия 4931'
+          
+    EducationResponse:
+      type: object
+      properties: 
+        STID: 
+          type: integer
+          format: int64
+          example: 74282
+        eid: 
+          type: integer
+          format: int64
+          example: 49970
+        degree: 
+          type: string
+          example: B
+        grnum: 
+          type: integer
+          format: int64
+          example: 4931
+        specialityName: 
+          type: string
+          example: 'Программная инженерия'
+        specialityCode: 
+          type: string
+          example: '09.03.04'
+        degreeTitle: 
+          type: string
+          example: 'Бакалавриат 09.03.04 Программная инженерия 4931'
+
+        
+    Educations_:
+      type: array
+      items:
+        $ref: '#/components/schemas/EducationResponse'
+          
+    Educations:
+      type: object
+      properties:
+        CurrentEducation:
+          $ref: '#/components/schemas/CurrentEducation'
+        Educations:
+          $ref: '#/components/schemas/Educations_'
+          
+    Profile:
+      type: object
+      properties:
+        achievements:
+          $ref: '#/components/schemas/achievements'
+        diploma:
+          type: string
+          example: null
+        Educations:
+          $ref: '#/components/schemas/Educations'
+        user:
+          $ref: '#/components/schemas/User'
+        studentInfo:
+          $ref: '#/components/schemas/StudentInfo'
+        Publication:
+          type: object
+          example: null
+        Publications:
+          type: object
+          example: null
+        Graphinfo:
+          $ref: '#/components/schemas/Graphinfo'
+        contracts:
+          $ref: '#/components/schemas/Contracts'
+        ep_link:
+          $ref: '#/components/schemas/EpLink'
+        
+          
+    Mark:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 0
+        text:
+          type: string
+          example: удовлетворительно
+    Marks:
+      type: array
+      items:
+        $ref: '#/components/schemas/Mark'
+    
+    Semester:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 0
+        text:
+          type: string
+          example: 0
+          
+    Semesters:
+      type: array
+      items:
+        $ref: '#/components/schemas/Semester'
+        
+    Subject_contrtype:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 0
+        text:
+          type: string
+          example: 0
+          
+    Subject_contrtypes:
+      type: array
+      items:
+        $ref: '#/components/schemas/Subject_contrtype'
+    
+    
+    Teacher:
+      type: object
+      properties:
+        id:
+          type: string
+          example: Гордеева Е.Ю.
+        text:
+          type: string
+          example: 39137
+          
+    Teachers:
+      type: array
+      items:
+        $ref: '#/components/schemas/Teacher'
+        
+    
+    Values:
+      type: object
+      properties:
+        LasttextSearch:
+          type: string
+          example: ''
+        selectedContrtype:
+          type: integer
+          format: int64
+          example: 1
+        selectedMark:
+          type: integer
+          format: int64
+          example: 1
+        selectedSemestr:
+          type: integer
+          format: int64
+          example: 1
+        selectedTeacher:
+          type: integer
+          format: int64
+          example: 0
+        textSearch:
+          type: string
+          example: ''
+          
+    EduResult:
+      type: object
+      properties:
+        IDEPC: 
+          type: integer
+          format: int64
+          example: '2340028'
+        subject: 
+          type: string
+          example: Безопасность жизнедеятельности
+        semestr: 
+          type: integer
+          format: int64
+          example: '1'
+        controltype: 
+          type: integer
+          format: int64
+          example: '2'
+        controltype_text: 
+          type: string
+          example: Зачет
+        res: 
+          type: integer
+          format: int64
+          example: '7'
+        resTeacher: 
+          type: string
+          example: Колобашкина Т.В.
+        resRating: 
+          type: integer
+          format: int64
+          example: '0'
+        DateEx: 
+          type: string
+          example: '2019-12-25'
+        crtime: 
+          type: string
+          example: 27.01.2020 17:52:34
+        res_text: 
+          type: string
+          example: зачет
+        teacher:
+          $ref: '#/components/schemas/Teachers'
+        res_color: 
+          type: string
+          example: '#00FF2F'
+    
+    EduResults:
+        type: array
+        items:
+          $ref: '#/components/schemas/EduResult'
+          
+    Dictionaries:
+        type: object
+        properties:
+          marks:
+            $ref: '#/components/schemas/Marks'
+          offset:
+            type: integer
+            format: int64
+            example: 10
+          subject_contrtype:
+            $ref: '#/components/schemas/Subject_contrtypes'
+          semesters:
+            $ref: '#/components/schemas/Semesters'
+          teacher:
+            $ref: '#/components/schemas/Teachers'
+          values:
+            $ref: '#/components/schemas/Values'
+            
+            
+    InfoResponse:
+        type: object
+        properties:
+          average: 
+            type: integer
+            format: int64
+            example: 4
+          color: 
+            type: string
+            example: "#B7FF00"
+          isDebts: 
+            type: boolean
+            example: false
+            
+            
+    Ere:
+      type: object
+      properties:
+        Info:
+          $ref: '#/components/schemas/InfoResponse'
+        Semesters:
+          $ref: '#/components/schemas/EduResult'
+          
+          
+    Eres:
+      type: array
+      items:
+        $ref: '#/components/schemas/Ere'
+    
+            
+            
+            
+    Series1:
+      type: object
+      properties:
+        data:
+          type: number
+          format: double
+          example:
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+        name:
+          type: string
+          example: 'Общий'
+          
+    Series2:
+      type: object
+      properties:
+        data:
+          type: number
+          format: double
+          example:
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+        name:
+          type: string
+          example: 'Экзамен'
+          
+          
+    Series3:
+      type: object
+      properties:
+        data:
+          type: number
+          format: double
+          example:
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+        name:
+          type: string
+          example: 'Курсовой проект'
+          
+          
+    Series4:
+      type: object
+      properties:
+        data:
+          type: number
+          format: double
+          example:
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+        name:
+          type: string
+          example: 'Курсовая работа'
+    
+    SeriesResponse:
+      type: array
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/Series1'
+          - $ref: '#/components/schemas/Series2'
+          - $ref: '#/components/schemas/Series3'
+          - $ref: '#/components/schemas/Series4'
+
+    MarksCT:
+      type: object
+      properties:
+        categories: 
+          type: integer
+          format: int64
+          example:
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+            - 6
+            - 7
+        Series:
+          $ref: '#/components/schemas/SeriesResponse'
+            
+          
+    StudentMarks:
+        type: object
+        properties:
+          IDEP: 
+            type: integer
+            format: int64
+            example: 5504
+          STID: 
+            type: integer
+            format: int64
+            example: 74282
+          avgRes: 
+            type: number
+            format: double
+            example: 4.25
+          currentTerm: 
+            type: integer
+            format: int64
+            example: 7
+          dictionaries:
+            $ref: '#/components/schemas/Dictionaries'
+          MarksCT:
+            $ref: '#/components/schemas/MarksCT'
+          Eres:
+            $ref: '#/components/schemas/Eres'
+          eduResults:
+            $ref: '#/components/schemas/EduResults'
+          marks:
+            $ref: '#/components/schemas/Marks'
+          termsNum: 
+            type: integer
+            format: int64
+            example: 8
+            
+            
+    ExamInfo:
+      type: object
+      properties:
+        dateExam: 
+          type: string
+          example: '0000-00-00 00:00:00'
+        dateSche: 
+          type: integer
+          format: int64
+          example: 0
+        linkExam: 
+          type: string
+          example: ''
+          
+          
+          
+          
+    Group:
+      type: object
+      properties:
+        id: 
+          type: integer
+          format: int64
+          example: '5374'
+        name: 
+          type: string
+          example: '4931'
+        numPeople: 
+          type: integer
+          format: int64
+          example: '17'
+        numPeopleСommerce: 
+          type: integer
+          format: int64
+          example: '2'
+        numPeopleBudget: 
+          type: integer
+          format: int64
+          example: '15'
+        EnrollYear: 
+          type: integer
+          format: int64
+          example: '2019'
+          
+            
+    Groups:
+      type: array
+      items:
+        $ref: '#/components/schemas/Group'
+        
+        
+            
+    Annotation:
+      type: object
+      properties:        
+        epfiles_name: 
+          type: string
+          example: e367473133007f2bb43f625d47c2e644
+        epfiles_origname: 
+          type: string
+          example: '09.03.04(02)_О_WТ_2019_0_43_аннот.pdf'
+        epfiles_type: 
+          type: string
+          example: '5'
+        epfiles_hash: 
+          type: string
+          example: e367473133007f2bb43f625d47c2e644
+          
+    Ep:
+      type: object
+      properties:        
+        epfiles_name: 
+          type: string
+          example: e367473133007f2bb43f625d47c2e644
+        epfiles_origname: 
+          type: string
+          example: '09.03.04(02)_О_WТ_2019_0_43_аннот.pdf'
+        epfiles_type: 
+          type: string
+          example: '4'
+        epfiles_hash: 
+          type: string
+          example: e367473133007f2bb43f625d47c2e644
+          
+          
+    Rpd:
+      type: object
+      properties:        
+        epfiles_name: 
+          type: string
+          example: e367473133007f2bb43f625d47c2e644
+        epfiles_origname: 
+          type: string
+          example: '09.03.04(02)_О_WТ_2019_0_43_аннот.pdf'
+        epfiles_type: 
+          type: string
+          example: '3'
+        epfiles_hash: 
+          type: string
+          example: e367473133007f2bb43f625d47c2e644
+          
+          
+    RpdAnnotation:
+      type: object
+      properties:        
+        Annotation: 
+          $ref: '#/components/schemas/Annotation'
+        Ep: 
+          $ref: '#/components/schemas/Ep'
+        Rpd: 
+          $ref: '#/components/schemas/Rpd'
+
+    SpecInfo:
+      type: object
+      properties:             
+        name: 
+          type: string
+          example: 'Программная инженерия'
+        new_code: 
+          type: string
+          example: '09.03.04'
+        type: 
+          type: string
+          example: B
+          
+        
+    GroupType:
+      type: object
+      properties:
+        grid: 
+          type: integer
+          format: int64
+          example: '5374'
+        grnum: 
+          type: integer
+          format: int64
+          example: '4931'
+        type_id: 
+          type: integer
+          format: int64
+          example: '1'
+        type_type: 
+          type: string
+          example: Л
+        type_name: 
+          type: string
+          example: Лекция
+        lt_IDControl: 
+          type: integer
+          format: int64
+          example: '0'
+        lt_IDContr: 
+          type: integer
+          format: int64
+          example: '0'
+        
+        
+    LessonTypes:
+      type: array
+      items:
+        $ref: '#/components/schemas/LessonType'
+        
+        
+    LessonType:
+      type: object
+      properties:
+        type_id: 
+          type: integer
+          format: int64
+          example: '1'
+        type_type: 
+          type: string
+          example: Л
+        type_name: 
+          type: string
+          example: Лекция
+        lt_IDControl: 
+          type: integer
+          format: int64
+          example: '0'
+        lt_IDContr: 
+          type: integer
+          format: int64
+          example: '0'
+          
+          
+          
+    TeachersResponse:
+      type: object
+      properties:
+        tid: 
+          type: integer
+          format: int64
+          example: '51857'
+        uid: 
+          type: integer
+          format: int64
+          example: '444'
+        LastName: 
+          type: string
+          example: Соловьева
+        FirstName: 
+          type: string
+          example: Надежда
+        MiddleName: 
+          type: string
+          example: Александровна
+        foto: 
+          type: string
+          example: "/files/img/exsamle/444/IMG_20210307_141350_234.jpg"
+        state: 
+          type: string
+          example: старший преподаватель
+        pluralist: 
+          type: integer
+          format: int64
+          example: '0'
+        positions:
+          type: integer
+          format: int64
+          example:
+            - 1
+        groups:
+          $ref: '#/components/schemas/Groups'
+        lessonTypes:
+          $ref: '#/components/schemas/LessonTypes'
+        groupTypes:
+          $ref: '#/components/schemas/GroupType'
+
+          
+          
+    Subject:
+      type: object
+      properties:
+          id: 
+            type: integer
+            format: int64
+            example: '2444933'
+          IDEP: 
+            type: integer
+            format: int64
+            example: '5504'
+          chair: 
+            type: string
+            example: Кафедра прикладной математики
+          chairId: 
+            type: integer
+            format: int64
+            example: '2'
+          subj: 
+            type: string
+            example: Вычислительная математика
+          FYear: 
+            type: integer
+            format: int64
+            example: '2019'
+          SemNum: 
+            type: integer
+            format: int64
+            example: '4'
+          contrText: 
+            type: string
+            example: Зачет
+          IDContr: 
+            type: integer
+            format: int64
+            example: '2'
+          IsPractice: 
+            type: integer
+            format: int64
+            example: '0'
+          TotalHours: 
+            type: integer
+            format: int64
+            example: '3'
+          WeeksInTerm: 
+            type: integer
+            format: int64
+            example: '17'
+          CR: 
+            type: integer
+            format: int64
+            example: '0'
+          SR: 
+            type: integer
+            format: int64
+            example: '57'
+          realSemNum: 
+            type: integer
+            format: int64
+            example: '4'
+          epfiles_name: 
+            type: string
+            example: '03957a7f90e3ab000aae09c9725a037f'
+          epfiles_origname: 
+            type: string
+            example: '09.03.02(04)_О_ВМ_2019_2.pdf'
+          epfiles_type: 
+            type: integer
+            format: int64
+            example: '4'
+          epfiles_hash: 
+            type: string
+            example: '03957a7f90e3ab000aae09c9725a037f'
+          year: 
+            type: integer
+            format: int64
+            example: 2021
+          semester: 
+            type: string
+            example: весенний
+          numberhours: 
+            type: integer
+            format: int64
+            example: 108
+          sumMarks: 
+            type: integer
+            format: int64
+            example: 0
+          summark: 
+            type: integer
+            format: int64
+            example: 0
+          nameMark: 
+            type: string
+            example: зачёт
+          examInfo:
+            $ref: '#/components/schemas/ExamInfo'
+          groups:
+            $ref: '#/components/schemas/Groups'
+          rpdAnnotation:
+            $ref: '#/components/schemas/RpdAnnotation'
+          specInfo:
+            $ref: '#/components/schemas/SpecInfo'
+          tasks:
+            $ref: '#/components/schemas/Tasks_'
+          teachers:
+            $ref: '#/components/schemas/TeachersResponse'
+            
+            
+            
+    Subjects:
+      type: array
+      items:
+        $ref: '#/components/schemas/Subject'
+    
+    SubjectItemStudent:
+      type: object
+      properties:
+        info_exam:
+          type: integer
+          format: int64
+          example:
+            - ''
+        statementGroupsAll:
+          type: integer
+          format: int64
+          example:
+            - ''
+        statementGroups:
+          type: integer
+          format: int64
+          example:
+            - ''
+        subject:
+          $ref: '#/components/schemas/Subjects'
+    ControlType:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 0
+        text:
+          type: string
+          example: Текст не выбран
+    ControlTypes:
+      type: array
+      items:
+        $ref: '#/components/schemas/ControlType'
+        
+    Info:
+      type: object
+      properties:
+        tid: 
+          type: integer
+          format: int64
+          example: 0
+        year: 
+          type: string
+          example: '0'
+        semester: 
+          type: string
+          example: '20'
+        type: 
+          type: string
+          example: '0'
+        controltype: 
+          type: string
+          example: '0'
+        searchtext: 
+          type: string
+          example: ''
+        statementStatus: 
+          type: integer
+          format: int64
+          example: 2
+        limit: 
+          type: integer
+          format: int64
+          example: 10
+        offset: 
+          type: integer
+          format: int64
+          example: 0
+      
+      
+    SubjectDictionaries:
+      type: object
+      properties:
+        dictionaries:
+          $ref: '#/components/schemas/Dictionaries'
+        semsForSort:
+          type: integer
+          format: int64
+            - 1
+            - 1
+            - 1
+        semsYearForSort:
+          type: integer
+          format: int64
+            - 2022
+            - 2022
+            - 2022
+        subjects:
+          $ref: '#/components/schemas/Subjects'
+          
+    Task:
+      type: object
+      properties:
+          id: 
+            type: integer
+            format: int64
+            example: '80796'
+          user_id: 
+            type: integer
+            format: int64
+            example: '15468'
+          datecreate: 
+            type: string
+            example: '2021-04-11 20:37:39'
+          dateupdate: 
+            type: string
+            example: '2021-04-11 20:37:39'
+          name: 
+            type: string
+            example: 'кр по ВМ'
+          descriptionTask:
+            type: string
+            example: ''
+          type: 
+            type: integer
+            format: int64
+            example: '4'
+          tt_name: 
+            type: string
+            example: Контрольная работа
+          public: 
+            type: integer
+            format: int64
+            example: '1'
+          semester: 
+            type: integer
+            format: int64
+            example: '17'
+          markpoint: 
+            type: integer
+            format: int64
+            example: '0'
+          reportRequired: 
+            type: integer
+            format: int64
+            example: '1'
+          url: 
+            type: string
+            example: ''
+          ordernum: 
+            type: integer
+            format: int64
+            example: '1'
+          expulsionLine: 
+            type: integer
+            format: int64
+            example: '0'
+          plenty: 
+            type: integer
+            format: int64
+            example: '0'
+          harddeadline: 
+            type: string
+            example: ''
+          grid: 
+            type: integer
+            format: int64
+            example: '5374'
+          subject: 
+            type: integer
+            format: int64
+            example: '2444933'
+          subject_name: 
+            type: string
+            example: Вычислительная математика
+          hash: 
+            type: string
+            example: 2a987efe883539d30c98693583c9e502
+          filename: 
+            type: string
+            example: ВМ.jpg
+          semester_name: 
+            type: string
+            example: 2020/2021 весенний
+          type_name: 
+            type: string
+            example: Контрольная работа
+          status: 
+            type: integer
+            format: int64
+            example: '2'
+          curPoints: 
+            type: integer
+            format: int64
+            example: '0'
+          status_name: 
+            type: string
+            example: принят
+    
+          
+    Tasks_:
+      type: array
+      items:
+        $ref: '#/components/schemas/Task'  
+        
+    StatusS:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 2
+        name:
+          type: string
+          example: Ожидает проверки
+          
+    Status:
+      type: array
+      items:
+        $ref: '#/components/schemas/StatusS'
+        
+        
+    Type:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 2
+        name:
+          type: string
+          example: Курсовая работа
+          
+    Types:
+      type: array
+      items:
+        $ref: '#/components/schemas/Type'
+        
+        
+    Tasks:
+      type: object
+      properties:
+        dictionaries:
+          $ref: '#/components/schemas/Dictionaries'
+        subjects:
+          $ref: '#/components/schemas/Tasks_'
+          
+          
+    Report:
+      type: object
+      properties:
+        user_fio: 
+          type: string
+          example: Екименко Евгений Андреевич
+        prof_fio: 
+          type: string
+          example: Ассаул Виктор Николаевич
+        filelink: 
+          type: string
+          example: "/get-report/82ca84c120c28b5a9c20562530717b4d"
+        status_name: 
+          type: string
+          example: принят
+        id: 
+          type: integer
+          format: int64
+          example: '1928162'
+        task_id: 
+          type: integer
+          format: int64
+          example: '80796'
+        task_name: 
+          type: string
+          example: кр по ВМ
+        task_markpoint: 
+          type: integer
+          format: int64
+          example: '0'
+        status: 
+          type: integer
+          format: int64
+          example: '2'
+        user_id: 
+          type: integer
+          format: int64
+          example: '23412'
+        prof_user: 
+          type: integer
+          format: int64
+          example: '15468'
+        created: 
+          type: string
+          example: '2021-04-13 16:45:18'
+        checked: 
+          type: string
+          example: '2021-04-15 18:11:09'
+        stud_comment: 
+          type: string
+          example: Екименко Евгений 4931 . КР 1
+        prof_comment: 
+          type: string
+          example: ''
+        markpoint: 
+          type: integer
+          format: int64
+          example: '0'
+        createdByTeacher: 
+          type: integer
+          format: int64
+          example: '0'
+        group_id: 
+          type: integer
+          format: int64
+          example: '5374'
+        group_num: 
+          type: string
+          example: '4931'
+          
+          
+    Reports:
+      type: array
+      items:
+        $ref: '#/components/schemas/Report'
+        
+        
+    StudentTask:
+      type: object
+      properties:
+        dictionaries:
+          $ref: '#/components/schemas/Dictionaries'
+        reports:
+          $ref: '#/components/schemas/Reports'
+        tasks:
+          $ref: '#/components/schemas/Tasks_'
+          
+          
+    Material:
+      type: object
+      properties:
+        id: 
+          type: integer
+          format: int64
+          example: '52395'
+        datecreate: 
+          type: integer
+          format: int64
+          example: '2021-08-31 20:38:09'
+        name: 
+          type: integer
+          format: int64
+          example: Методическое пособие ТРСИС
+        semester: 
+          type: integer
+          format: int64
+          example: '18'
+        isPublic: 
+          type: boolean
+          example: true
+        url: 
+          type: integer
+          format: int64
+          example: ''
+        filelink: 
+          type: integer
+          format: int64
+          example: "/get-material/c97f3e261ee11cbf069c43ff26036662"
+        subject:
+          type: integer
+          format: int64
+          example: 
+            - '2489859'
+        groups:
+          type: integer
+          format: int64
+          example: 
+            - '5374'
+          
+    
+    Materials:
+      type: array
+      items:
+        $ref: '#/components/schemas/Material'
+
+    
+    Course_doc:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 298
+        name:
+          type: string
+          example: 'Регистрационный номер 2784'
+          
+    Courses_doc:
+      type: array
+      items:
+        $ref: '#/components/schemas/Course_doc'
+        
+    d_council:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 241
+        name:
+          type: string
+          example: 'Тест'
+          
+    d_councils:
+      type: array
+      items:
+        $ref: '#/components/schemas/d_councils'
+        
+        
+    
+        
+    education_categorie:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 237
+        name:
+          type: string
+          example: 'ВПО/СПО'
+        eng_name:
+          type: string
+          example: 'vpo/spo'
+          
+    education_categories:
+      type: array
+      items:
+        $ref: '#/components/schemas/education_categorie'
+        
+        
+        
+    q_assignedd:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 0
+        name:
+          type: string
+          example: 'не выбран'
+          
+    q_assigned:
+      type: array
+      items:
+        $ref: '#/components/schemas/q_assignedd'
+        
+        
+    qualificationn:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 0
+        name:
+          type: string
+          example: 'не выбран'
+          
+    qualification:
+      type: array
+      items:
+        $ref: '#/components/schemas/qualificationn'
+        
+        
+    eduformm:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 0
+        name:
+          type: string
+          example: 'очная'
+          
+    eduform:
+      type: array
+      items:
+        $ref: '#/components/schemas/eduformm'
+        
+    
+    
+    education:
+      type: object
+      properties:
+        Courses_doc:
+          $ref: '#/components/schemas/Courses_doc'
+        d_councils:
+          $ref: '#/components/schemas/d_councils'
+        education_categories:
+          $ref: '#/components/schemas/education_categories'
+        educations:
+          type: integer
+          format: int64
+            - ''
+        eduform:
+          $ref: '#/components/schemas/eduform'
+        q_assigned:
+          $ref: '#/components/schemas/q_assigned'
+        qualification:
+          $ref: '#/components/schemas/qualification'
+        start_date:
+          type: integer
+          format: int64
+          example: 2031
+        end_date:
+          type: integer
+          format: int64
+          example: 1935
+        user:
+          $ref: '#/components/schemas/User'
+          
+    StudentProfile:
+      type: object
+      properties:
+        achievemenets:
+          type: string
+          example:
+            - ''
+        education:
+          $ref: '#/components/schemas/education'
+        d_councils:
+          $ref: '#/components/schemas/d_councils'
+        education_categories:
+          $ref: '#/components/schemas/education_categories'
+          
+            
+    achievement_categorie:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 0
+        engName:
+          type: string
+          example: 'guapPrize'
+        transName:
+          type: string
+          example: 'награды гуап'
+          
+    achievement_categories:
+      type: array
+      items:
+        $ref: '#/components/schemas/achievement_categorie'
+        
+        
+    achievements:
+      type: object
+      properties:
+        achievement_categorie:
+          $ref: '#/components/schemas/achievement_categorie'
+        achievemenets:
+          type: string
+          example:
+            - ''
+    
+    item:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 20
+        user_id:
+          type: integer
+          format: int64
+          example: 23412
+        text:
+          type: string
+          example: "Победитель compTech 2022"
+        filelink:
+          type: string
+          example: "/get-achievement/"
+        hash:
+          type: string
+          example: ""
+        file:
+          type: boolean
+          example: false
+        filename:
+          type: boolean
+          example: false
+        category:
+          type: integer
+          format: int64
+          example: 3
+          
+          
+    NewAchievement:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 20
+        item:
+          $ref: '#/components/schemas/item'
+        result:
+          type: string
+          example: 'success'
+          
+    deleteAchievement:
+      type: object
+      properties:
+        deleted:
+          type: integer
+          format: int64
+          example: 4629
+        result:
+          type: string
+          example: 'success'
+          
+          
+    childrenn:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 4629
+        text:
+          type: string
+          example: 'Справка - вызов'
+        type:
+          type: integer
+          format: int64
+          example: 3
+    
+    children:
+      type: array
+      items:
+        $ref: '#/components/schemas/childrenn'
+        
+    
+    
+    referencee:
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/children'
+        text:
+          type: string
+          example: 'Деканат'
+
+    
+    reference:
+      type: array
+      items:
+        $ref: '#/components/schemas/referencee'
+        
+        
+    values:
+      type: object
+      properties:
+        lasttexSearch:
+          type: string
+          example: ''
+        selectedReference:
+          type: string
+          example: '0'
+        textSearch:
+          type: string
+          example: ''
+          
+    Dictionarie:
+      type: object
+      properties:
+        limit:
+          type: string
+          example: ''
+        reference:
+          $ref: '#/components/schemas/reference'
+        values:
+          $ref: '#/components/schemas/values'
+        offset:
+          type: string
+          example: '0'
+        isyetitems:
+          type: boolean
+          example: false
+        reference_:
+          type: string
+          example:
+            - ''
+        
+    
+    years:
+      type: object
+      properties:
+        startYear:
+          type: integer
+          format: int64
+          example: 1927
+        endYear:
+          type: integer
+          format: int64
+          example: 2027
+          
+          
+    publication_categorie:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        engName:
+          type: string
+          example: 'thesis_abstract'
+        transName:
+          type: string
+          example: 'автореферат диссертация'
+          
+    publication_categories:
+      type: array
+      items:
+        $ref: '#/components/schemas/publication_categorie'
+        
+        
+    magazine:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 4239
+        Name:
+          type: string
+          example: '\t'
+        foreignMagazine:
+          type: integer
+          format: int64
+          example: 0
+        rinc:
+          type: integer
+          format: int64
+          example: 1
+        scopus:
+          type: integer
+          format: int64
+          example: 1
+        ump:
+          type: integer
+          format: int64
+          example: 1
+        vak:
+          type: integer
+          format: int64
+          example: 1
+        webOfSince:
+          type: integer
+          format: int64
+          example: 1
+          
+    magazines:
+      type: array
+      items:
+        $ref: '#/components/schemas/magazine'
+        
+        
+    filterData:
+      type: object
+      properties:
+        limit:
+          type: string
+          example: ''
+        magazines:
+          $ref: '#/components/schemas/magazines'
+        publication_categories:
+          $ref: '#/components/schemas/publication_categories'
+        years:
+          $ref: '#/components/schemas/years'
+        p:
+          type: string
+          example:
+            - ''
+    
+    
+        
+    Question:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 49970
+        q1_2020:
+          type: string
+          example: ''
+        visible:
+          type: boolean
+          example:
+            - false
+            - true
+            - true
+            - false
+
+    EditProfileAPIResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: 'Пользователь обновлен'
+        result:
+          type: string
+          example: 'success'
+          
+          
+          
+          
+          

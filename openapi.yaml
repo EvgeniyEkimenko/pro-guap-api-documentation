@@ -220,7 +220,7 @@ paths:
         '400':
           description: Invalid ID supplied
         '404':
-          description: User not found
+          description: Dictionaries not found
           
           
   /get-student-marks/{student_id}:
@@ -236,8 +236,9 @@ paths:
           description: Student id
           required: true
           schema:
-            type: string
-          example: 49970
+            type: integer
+            format: int64
+            example: 49970
       responses:
         '200':
           description: Successful operation
@@ -273,7 +274,7 @@ paths:
         '400':
           description: Invalid ID supplied
         '404':
-          description: Student marks not found
+          description: Student profile not found
   
   /SubjectItemStudent:
     post:
@@ -330,7 +331,7 @@ paths:
           schema:
             type: integer
             format: int64
-          example: 4629
+            example: 4629
       responses:
         '200':
           description: Successful operation
@@ -603,7 +604,8 @@ paths:
           description: Task id
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
           example: 80796
       responses:
         '200':
@@ -657,6 +659,38 @@ paths:
                 $ref: '#/components/schemas/Materials'
         '405':
           description: Invalid input
+          
+          
+  /getstudentlibrary/{library_id}:
+    get:
+      tags:
+        - Library
+      summary: Get library by id
+      description: library info
+      operationId: getLibraryInfo
+      parameters:
+        - name: library_id
+          in: path
+          description: Task id
+          required: true
+          schema:
+            type: integer
+            format: int64
+          example: 23412
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Library' 
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Library'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Student task not found
 
 components:
   schemas:
@@ -2808,6 +2842,21 @@ components:
         result:
           type: string
           example: 'success'
+          
+    Library:
+      type: object
+      properties:          
+        uid: 
+          type: integer
+          format: int64
+          example: '23412'
+        LastName: 
+          type: string
+          example: Екименко
+        library: 
+          type: integer
+          format: int64
+          example: '1673859'
           
           
           

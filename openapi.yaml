@@ -142,9 +142,9 @@ paths:
     get:
       tags:
         - Profile
-      summary: Get user profile
-      description: Get user profile
-      operationId: getUserProfile
+      summary: Get student profile
+      description: Get student profile
+      operationId: getStudentProfilebyId
       parameters:
         - name: profile_id
           in: path
@@ -608,13 +608,24 @@ paths:
         '404':
           description: Subject not found
           
-  /tasks:
-    get:
+  /get-student-tasksdictionaries:
+    post:
       tags:
         - Task
       summary: Get all tasks
       description: Get information about all tasks
       operationId: getAllTasks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  format: int64
+                  example: 23412      
       responses:
         '200':
           description: Successful operation

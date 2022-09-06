@@ -10,6 +10,7 @@ servers:
 
 paths:
 
+
   /userUpdateProfile/{user_id}:
     put:
       tags:
@@ -137,7 +138,7 @@ paths:
           description: Question not found
 
 
-  /getstudentprofile/{profile_id}:
+  /get-student-profile/{profile_id}:
     get:
       tags:
         - Profile
@@ -275,6 +276,44 @@ paths:
           description: Invalid ID supplied
         '404':
           description: Student profile not found
+          
+          
+          
+  /getstudentmaterialdictionaries:
+    post:
+      tags:
+        - Dictionary
+      summary: Get all material dictionaries
+      description: student material dictionaries
+      operationId: getMaterialDictionaries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  example: 8741
+              required:
+                - id
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentMaterialDictionary'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/StudentMaterialDictionary'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Smaterial dictionaries not found
+          
   
   /SubjectItemStudent:
     post:
@@ -2054,6 +2093,8 @@ components:
             - ''
         subject:
           $ref: '#/components/schemas/Subjects'
+          
+          
     ControlType:
       type: object
       properties:
@@ -2109,7 +2150,7 @@ components:
       type: object
       properties:
         dictionaries:
-          $ref: '#/components/schemas/Dictionaries'
+          $ref: '#/components/schemas/Dictionarie_'
         semsForSort:
           type: integer
           format: int64
@@ -2859,6 +2900,160 @@ components:
           example: '1673859'
           
           
+    
+    
+    
+    
+    
+    
+    InfoTask:
+      type: object
+      properties:
+        tid: 
+          type: integer
+          format: int64
+          example: 0
+        year: 
+          type: string
+          example: '0'
+        semester: 
+          type: string
+          example: '20'
+        type: 
+          type: string
+          example: '0'
+        controltype: 
+          type: string
+          example: '0'
+        searchtext: 
+          type: string
+          example: ''
+        statementStatus: 
+          type: integer
+          format: int64
+          example: 2
+        limit: 
+          type: integer
+          format: int64
+          example: 10
+        offset: 
+          type: integer
+          format: int64
+          example: 0
           
+    StatementStatus:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        text:
+          type: string
+          example: 'все'    
+          
+    StatementStatuses:
+      type: array
+      items:
+        $ref: '#/components/schemas/StatementStatus'
+    
+    
+    Dictionarie_:
+      type: object
+      properties:
+        limit:
+          type: string
+          example: ''
+        years:
+          $ref: '#/components/schemas/years'
+        types:
+          $ref: '#/components/schemas/Types'
+        statementStatus:
+          $ref: '#/components/schemas/StatementStatuses'
+        values:
+          $ref: '#/components/schemas/values'
+        semesters:
+          $ref: '#/components/schemas/Semesters'
+        info:
+          $ref: '#/components/schemas/Info'
+        controltypes:
+          $ref: '#/components/schemas/ControlTypes'
+        offset:
+          type: integer
+          format: int64
+        isyetitems:
+          type: boolean
+          example: false
+          
+          
+    groupName:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        text:
+          type: string
+          example: 'все'    
+          
+    GroupNames:
+      type: array
+      items:
+        $ref: '#/components/schemas/groupName'
+        
+    GroupSubjects:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 0
+        groupName:
+          $ref: '#/components/schemas/GroupNames'
+          
+          
+    Displaysubject:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 0
+        groupName:
+          $ref: '#/components/schemas/GroupNames'
+          
+    Dictionary_resp:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 0
+        displaysubject:
+          $ref: '#/components/schemas/Displaysubject'
+        groupSubjects:
+          $ref: '#/components/schemas/GroupSubjects'
+        groupNames:
+          $ref: '#/components/schemas/GroupNames'
+        semesetrs:
+          $ref: '#/components/schemas/Semesters'
+        subjects:
+          $ref: '#/components/schemas/Subjects'
+        values:
+          $ref: '#/components/schemas/Values'
+          
+          
+    StudentMaterialDictionary:
+      type: object
+      properties:
+        limit:
+          type: string
+          example: ''
+        Dictionary_resp:
+          $ref: '#/components/schemas/Dictionary_resp'
+        Materials:
+          $ref: '#/components/schemas/Materials'
+
           
           
